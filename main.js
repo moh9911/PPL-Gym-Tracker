@@ -493,6 +493,7 @@ function exportCSV(){
  }));
  const quote=v=>'"'+String(v).replaceAll('"','""')+'"';
  const csv=rows.map(row=>row.map(quote).join(",")).join("\r\n");
+ if (window.GymApp && typeof window.GymApp.saveCsv === "function") { window.GymApp.saveCsv(csv); return; }
  const blob=new Blob([csv],{type:"text/csv"});
  const a=document.createElement("a");
  a.href=URL.createObjectURL(blob);
