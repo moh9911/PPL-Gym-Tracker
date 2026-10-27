@@ -328,11 +328,6 @@ class="video-btn"
 style="margin-top:10px;">
 💾 Save Weight
 </button>
-<button type="button" onclick="clearCurrentWeight('${day}-${ex.name}')"
-class="video-btn" style="margin-top:10px;">
-🧹 Clear Current
-</button>
-
 <a
 class="video-btn"
 target="_blank"
