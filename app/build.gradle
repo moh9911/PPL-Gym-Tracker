@@ -10,5 +10,4 @@ android {
         versionName '1.0'
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets'] } }
-    aaptOptions { ignoreAssetsPattern '!*.html:!*.js:!*.css:!*.json:!*.png:!*.svg:!*.webp:!*.jpg:!*.jpeg:!*.gif:!*.ico' }
 }
