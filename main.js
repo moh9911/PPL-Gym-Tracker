@@ -474,37 +474,31 @@ document.getElementById(
 }
 
 function exportCSV(){
-
-let csv =
-"Date,Weight,Steps,Protein,Notes\n";
-
-logs.forEach(log=>{
-
-csv +=
-`${log.date},
-${log.weight},
-${log.steps},
-${log.protein},
-${log.notes}\n`;
-
-});
-
-const blob =
-new Blob([csv],{
-type:"text/csv"
-});
-
-const a =
-document.createElement("a");
-
-a.href =
-URL.createObjectURL(blob);
-
-a.download =
-"gym_progress.csv";
-
-a.click();
-
+ const history=getExerciseHistory();
+ const dates=new Set();
+ const matrix={};
+ Object.entries(history).forEach(([exercise,sessions])=>{
+   matrix[exercise]={};
+   sessions.forEach(session=>{
+     const day=session.date.slice(0,10);
+     dates.add(day);
+     matrix[exercise][day]=session.weight;
+   });
+ });
+ const columns=Array.from(dates).sort();
+ const rows=[["Exercise",...columns]];
+ Object.entries(workouts).forEach(([day,exercises])=>exercises.forEach(ex=>{
+   const key=day+"-"+ex.name;
+   rows.push([key,...columns.map(d=>matrix[key]?.[d]??"")]);
+ }));
+ const quote=v=>'"'+String(v).replaceAll('"','""')+'"';
+ const csv=rows.map(row=>row.map(quote).join(",")).join("\r\n");
+ const blob=new Blob([csv],{type:"text/csv"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="ppl-gym-exercises.csv";
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),10000);
 }
 
 let chart;
