@@ -32,6 +32,11 @@ jobs:
           cp index.html main.js style.css manifest.json icon.png app/src/main/assets/
       - name: Build debug APK
         run: gradle :app:assembleDebug --no-daemon
+      - name: Verify HTML bundled in APK
+        run: |
+          unzip -l app/build/outputs/apk/debug/app-debug.apk | tee /tmp/apk-files.txt
+          grep -q 'assets/index.html' /tmp/apk-files.txt
+          grep -q 'assets/main.js' /tmp/apk-files.txt
       - uses: actions/upload-artifact@v4
         with:
           name: PPL-Gym-Tracker-APK
