@@ -242,7 +242,6 @@ function deleteExerciseSession(id, index) {
   const history = getExerciseHistory();
   const entries = history[id] || [];
   if (index < 0 || index >= entries.length) return;
-  if (!confirm("Delete this saved session?")) return;
   entries.splice(index, 1);
   if (entries.length) {
     history[id] = entries;
