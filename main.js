@@ -224,7 +224,14 @@ function renderExerciseHistory(id){
     deleteButton.type = "button";
     deleteButton.textContent = "🗑️ Delete";
     deleteButton.className = "delete-weight-btn";
-    deleteButton.addEventListener("click", () => deleteExerciseSession(id, index));
+    deleteButton.addEventListener("click", () => {
+      if (deleteButton.dataset.confirm !== "yes") {
+        deleteButton.dataset.confirm = "yes";
+        deleteButton.textContent = "⚠️ Confirm Delete";
+        return;
+      }
+      deleteExerciseSession(id, index);
+    });
     row.appendChild(document.createTextNode("  "));
     row.appendChild(deleteButton);
     el.appendChild(row);
