@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#22c55e">
+<title>PPL Gym Tracker</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>🔥 PPL GYM TRACKER 🔥</h1>
+<p>Workout • Progress • Tracking</p>
+</div>
+
+<div class="section">
+
+<h2>📅 Weekly Schedule</h2>
+
+<div class="item">🔥 Saturday → PUSH</div>
+<div class="item">💪 Monday → PULL</div>
+<div class="item">🦵 Wednesday → LEGS</div>
+<div class="item">🚶 Recovery & Walking باقي الأيام</div>
+
+</div>
+<div class="section">
+
+<h2>⏱️ Rest Timer</h2>
+
+<div id="timer">
+90
+</div>
+
+<div class="timer-buttons">
+
+<button onclick="setTimer(30)">
+30s
+</button>
+
+<button onclick="setTimer(60)">
+60s
+</button>
+
+<button onclick="setTimer(90)">
+90s
+</button>
+
+<button onclick="startTimer()">
+▶ Start
+</button>
+
+<button onclick="resetTimer()">
+↺ Reset
+</button>
+
+</div>
+<div class="section">
+
+<h2>🏋️ Workout Program</h2>
+
+<div id="workoutsContainer"></div>
+
+</div>
+
+<div class="section">
+
+<h2>📊 Daily Progress</h2>
+
+<input id="date" type="date">
+
+<input id="weight" type="number" placeholder="Weight (kg)">
+
+<input id="steps" type="number" placeholder="Daily Steps">
+
+<input id="protein" type="number" placeholder="Protein (g)">
+
+<textarea id="notes" placeholder="Notes"></textarea>
+
+<button onclick="saveLog()">
+💾 Save Progress
+</button>
+
+<button onclick="exportAllData()">📦 Backup All Data (JSON)</button>
+
+<button onclick="exportCSV()">
+📥 Export CSV
+</button>
+
+</div>
+
+<div class="section">
+
+
+</div>
+<h2>📈 Weight Progress</h2>
+
+<canvas id="weightChart"></canvas>
+
+</div>
+
+<div class="section">
+
+<h2>📋 Saved Logs</h2>
+
+<div id="logs"></div>
+
+</div>
+
+<div class="section">
+
+<h2>📊 BMI Calculator</h2>
+
+<input id="bmiHeight" placeholder="Height cm">
+
+<input id="bmiWeight" placeholder="Weight kg">
+
+<button onclick="calculateBMI()">
+Calculate BMI
+</button>
+
+<h3 id="bmiResult"></h3>
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html> 
